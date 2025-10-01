@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Enrollment Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background: #2575fc;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .header-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5rem;
+            opacity: 0.2;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .illustration {
+            flex: 1;
+            min-width: 300px;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+        
+        .form-container {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+        }
+        
+        .form-title {
+            font-size: 1.5rem;
+            color: #2575fc;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .input-group input:focus, .input-group select:focus {
+            border-color: #2575fc;
+            outline: none;
+        }
+        
+        .class-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .class-option {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .class-option:hover {
+            background: #e9ecef;
+        }
+        
+        .class-option input {
+            margin-right: 8px;
+            width: auto;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #2575fc;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        button:hover {
+            background: #1a67eb;
+        }
+        
+        .success-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #d4edda;
+            color: #155724;
+            text-align: center;
+            display: none;
+        }
+        
+        .student-img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .class-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Student Enrollment Form</h1>
+            <p>For students from 3rd to 10th grade</p>
+            <i class="fas fa-graduation-cap header-icon"></i>
+        </div>
+        
+       
+            
+            <div class="form-container">
+                <h2 class="form-title">Enter Student Details</h2>
+                
+                <form id="enrollmentForm">
+                    <div class="input-group">
+                        <label for="name">Student Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter full name">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" name="age" min="8" max="16" required placeholder="Enter age">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="class">Select Class</label>
+                        <div class="class-options">
+                            <label class="class-option">
+                                <input type="radio" name="class" value="3" required> 3rd
+                            </label>
+                            <label class="class-option">
+                                <input type="radio" name="class" value="4"> 4th
+                            </label>
+                            <label class="class-option">
+                                <input type="radio" name="class" value="5"> 5th
+                            </label>
+                            <label class="class-option">
+                                <input type="radio" name="class" value="6"> 6th
+                            </label>
+                            <label class="class-option">
+                                <input type="radio" name="class" value="7"> 7th
+                            </label>
+                            <label class="class-option">
+                                <input type="radio" name="class" value="8"> 8th
+                            </label>
+                            <label class="class-option">
+                                <input type="radio" name="class" value="9"> 9th
+                            </label>
+                            <label class="class-option">
+                                <input type="radio" name="class" value="10"> 10th
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter email address">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="Enter phone number">
+                    </div>
+                    
+                    <button type="submit">
+                        <i class="fas fa-paper-plane"></i> Submit Enrollment
+                    </button>
+                </form>
+                
+                <div class="success-message" id="successMessage">
+                    Enrollment submitted successfully! We'll contact you soon.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('enrollmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const age = parseInt(document.getElementById('age').value);
+            if (age < 8 || age > 16) {
+                alert('Please enter a valid age between 8 and 16 years.');
+                return;
+            }
+            
+            // If validation passes, show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Reset form after 2 seconds
+            setTimeout(() => {
+                document.getElementById('enrollmentForm').reset();
+                document.getElementById('successMessage').style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
