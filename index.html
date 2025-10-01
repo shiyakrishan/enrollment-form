@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Student Enrollment Form</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             display: flex;
@@ -21,7 +24,7 @@
             min-height: 100vh;
             padding: 20px;
         }
-        
+
         .container {
             width: 100%;
             max-width: 1000px;
@@ -32,7 +35,18 @@
             display: flex;
             flex-direction: column;
         }
-        
+
+        /* Advertisement banner */
+        .advertisement {
+            background: #ffcc00;
+            color: #333;
+            padding: 15px 25px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border-bottom: 3px solid #e6b800;
+        }
+
         .header {
             background: #2575fc;
             color: white;
@@ -40,17 +54,17 @@
             text-align: center;
             position: relative;
         }
-        
+
         .header h1 {
             font-size: 2rem;
             margin-bottom: 10px;
         }
-        
+
         .header p {
             font-size: 1.1rem;
             opacity: 0.9;
         }
-        
+
         .header-icon {
             position: absolute;
             top: 20px;
@@ -58,12 +72,12 @@
             font-size: 2.5rem;
             opacity: 0.2;
         }
-        
+
         .content {
             display: flex;
             flex-wrap: wrap;
         }
-        
+
         .illustration {
             flex: 1;
             min-width: 300px;
@@ -73,32 +87,33 @@
             justify-content: center;
             padding: 30px;
         }
-        
+
         .form-container {
             flex: 1;
             min-width: 300px;
             padding: 30px;
         }
-        
+
         .form-title {
             font-size: 1.5rem;
             color: #2575fc;
             margin-bottom: 25px;
             text-align: center;
         }
-        
+
         .input-group {
             margin-bottom: 20px;
         }
-        
+
         .input-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
             color: #444;
         }
-        
-        .input-group input, .input-group select {
+
+        .input-group input,
+        .input-group select {
             width: 100%;
             padding: 15px;
             border: 2px solid #ddd;
@@ -106,19 +121,20 @@
             font-size: 1rem;
             transition: border-color 0.3s;
         }
-        
-        .input-group input:focus, .input-group select:focus {
+
+        .input-group input:focus,
+        .input-group select:focus {
             border-color: #2575fc;
             outline: none;
         }
-        
+
         .class-options {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             margin-top: 10px;
         }
-        
+
         .class-option {
             display: flex;
             align-items: center;
@@ -128,16 +144,16 @@
             cursor: pointer;
             transition: background 0.3s;
         }
-        
+
         .class-option:hover {
             background: #e9ecef;
         }
-        
+
         .class-option input {
             margin-right: 8px;
             width: auto;
         }
-        
+
         button {
             width: 100%;
             padding: 15px;
@@ -154,11 +170,21 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         button:hover {
             background: #1a67eb;
         }
-        
+
+        /* Details button style */
+        #detailsButton {
+            margin-top: 15px;
+            background: #28a745;
+        }
+
+        #detailsButton:hover {
+            background: #218838;
+        }
+
         .success-message {
             margin-top: 20px;
             padding: 15px;
@@ -168,118 +194,285 @@
             text-align: center;
             display: none;
         }
-        
+
         .student-img {
             max-width: 100%;
             height: auto;
         }
-        
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #fff;
+            border-radius: 15px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 10px 20px;
+            background: #2575fc;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 700;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .modal-body {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .modal-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
         @media (max-width: 768px) {
             .content {
                 flex-direction: column;
             }
-            
+
             .class-options {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .modal-content {
+                max-width: 100%;
+                max-height: 80vh;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Advertisement banner -->
+        <div class="advertisement">
+            📢 Enrollment Open Now! Register your child today for the new academic year.
+        </div>
+
         <div class="header">
             <h1>Student Enrollment Form</h1>
             <p>For students from 3rd to 10th grade</p>
             <i class="fas fa-graduation-cap header-icon"></i>
         </div>
-        
-       
-            
-            <div class="form-container">
-                <h2 class="form-title">Enter Student Details</h2>
-                
-                <form id="enrollmentForm">
-                    <div class="input-group">
-                        <label for="name">Student Name</label>
-                        <input type="text" id="name" name="name" required placeholder="Enter full name">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="age">Age</label>
-                        <input type="number" id="age" name="age" min="8" max="16" required placeholder="Enter age">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="class">Select Class</label>
-                        <div class="class-options">
-                            <label class="class-option">
-                                <input type="radio" name="class" value="3" required> 3rd
-                            </label>
-                            <label class="class-option">
-                                <input type="radio" name="class" value="4"> 4th
-                            </label>
-                            <label class="class-option">
-                                <input type="radio" name="class" value="5"> 5th
-                            </label>
-                            <label class="class-option">
-                                <input type="radio" name="class" value="6"> 6th
-                            </label>
-                            <label class="class-option">
-                                <input type="radio" name="class" value="7"> 7th
-                            </label>
-                            <label class="class-option">
-                                <input type="radio" name="class" value="8"> 8th
-                            </label>
-                            <label class="class-option">
-                                <input type="radio" name="class" value="9"> 9th
-                            </label>
-                            <label class="class-option">
-                                <input type="radio" name="class" value="10"> 10th
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required placeholder="Enter email address">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="Enter phone number">
-                    </div>
-                    
-                    <button type="submit">
-                        <i class="fas fa-paper-plane"></i> Submit Enrollment
-                    </button>
-                </form>
-                
-                <div class="success-message" id="successMessage">
-                    Enrollment submitted successfully! We'll contact you soon.
+
+        <div class="form-container">
+            <h2 class="form-title">Enter Student Details</h2>
+
+            <form id="enrollmentForm">
+                <div class="input-group">
+                    <label for="name">Student Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        placeholder="Enter full name"
+                    />
                 </div>
+
+                <div class="input-group">
+                    <label for="age">Age</label>
+                    <input
+                        type="number"
+                        id="age"
+                        name="age"
+                        min="8"
+                        max="16"
+                        required
+                        placeholder="Enter age"
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label for="class">Select Class</label>
+                    <div class="class-options">
+                        <label class="class-option">
+                            <input type="radio" name="class" value="3" required /> 3rd
+                        </label>
+                        <label class="class-option">
+                            <input type="radio" name="class" value="4" /> 4th
+                        </label>
+                        <label class="class-option">
+                            <input type="radio" name="class" value="5" /> 5th
+                        </label>
+                        <label class="class-option">
+                            <input type="radio" name="class" value="6" /> 6th
+                        </label>
+                        <label class="class-option">
+                            <input type="radio" name="class" value="7" /> 7th
+                        </label>
+                        <label class="class-option">
+                            <input type="radio" name="class" value="8" /> 8th
+                        </label>
+                        <label class="class-option">
+                            <input type="radio" name="class" value="9" /> 9th
+                        </label>
+                        <label class="class-option">
+                            <input type="radio" name="class" value="10" /> 10th
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        placeholder="Enter email address"
+                    />
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        required
+                        placeholder="Enter phone number"
+                    />
+                </div>
+
+                <button type="submit">
+                    <i class="fas fa-paper-plane"></i> Submit Enrollment
+                </button>
+            </form>
+
+            <!-- Details button -->
+            <button id="detailsButton" type="button">
+                <i class="fas fa-file-pdf"></i> View Details PDF
+            </button>
+
+            <div class="success-message" id="successMessage">
+                Enrollment submitted successfully! We'll contact you soon.
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for PDF -->
+    <div id="pdfModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="modalTitle">Enrollment Details PDF</span>
+                <button class="modal-close" aria-label="Close PDF modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <iframe
+                    id="pdfFrame"
+                    src=""
+                    title="Enrollment Details PDF"
+                    frameborder="0"
+                    allowfullscreen
+                ></iframe>
             </div>
         </div>
     </div>
 
     <script>
-        document.getElementById('enrollmentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Basic validation
-            const age = parseInt(document.getElementById('age').value);
-            if (age < 8 || age > 16) {
-                alert('Please enter a valid age between 8 and 16 years.');
-                return;
+        // Form submission handling
+        document
+            .getElementById("enrollmentForm")
+            .addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                // Basic validation
+                const age = parseInt(document.getElementById("age").value);
+                if (age < 8 || age > 16) {
+                    alert("Please enter a valid age between 8 and 16 years.");
+                    return;
+                }
+
+                // If validation passes, show success message
+                document.getElementById("successMessage").style.display = "block";
+
+                // Reset form after 3 seconds
+                setTimeout(() => {
+                    document.getElementById("enrollmentForm").reset();
+                    document.getElementById("successMessage").style.display = "none";
+                }, 3000);
+            });
+
+        // Modal elements
+        const modal = document.getElementById("pdfModal");
+        const pdfFrame = document.getElementById("pdfFrame");
+        const detailsButton = document.getElementById("detailsButton");
+        const closeModalBtn = modal.querySelector(".modal-close");
+
+        // PDF URL - replace with your actual PDF file path or URL
+        const pdfUrl = "DIWALI NOTICE final pdf (1).pdf";
+
+        // Open modal and load PDF
+        detailsButton.addEventListener("click", () => {
+            pdfFrame.src = pdfUrl;
+            modal.style.display = "flex";
+            modal.setAttribute("aria-hidden", "false");
+            // Focus on close button for accessibility
+            closeModalBtn.focus();
+        });
+
+        // Close modal function
+        function closeModal() {
+            modal.style.display = "none";
+            modal.setAttribute("aria-hidden", "true");
+            pdfFrame.src = ""; // Clear src to stop loading PDF
+            detailsButton.focus(); // Return focus to details button
+        }
+
+        // Close modal on close button click
+        closeModalBtn.addEventListener("click", closeModal);
+
+        // Close modal on clicking outside modal content
+        window.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                closeModal();
             }
-            
-            // If validation passes, show success message
-            document.getElementById('successMessage').style.display = 'block';
-            
-            // Reset form after 2 seconds
-            setTimeout(() => {
-                document.getElementById('enrollmentForm').reset();
-                document.getElementById('successMessage').style.display = 'none';
-            }, 3000);
+        });
+
+        // Close modal on pressing Escape key
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && modal.style.display === "flex") {
+                closeModal();
+            }
         });
     </script>
 </body>
